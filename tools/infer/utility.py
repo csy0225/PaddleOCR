@@ -241,6 +241,7 @@ def create_predictor(args, mode, logger):
                     max_batch_size=args.max_batch_size,
                     min_subgraph_size=args.
                     min_subgraph_size,  # skip the minmum trt subgraph
+                    use_static = True,
                     use_calib_mode=False)
 
                 # collect shape

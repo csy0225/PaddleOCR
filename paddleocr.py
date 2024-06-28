@@ -29,6 +29,7 @@ from pathlib import Path
 import base64
 from io import BytesIO
 from PIL import Image
+from tools.infer import predict_system
 
 
 def _import_file(module_name, file_path, make_importable=False):
@@ -584,6 +585,8 @@ class PaddleOCR(predict_system.TextSystem):
         assert params.ocr_version in SUPPORT_OCR_MODEL_VERSION, "ocr_version must in {}, but get {}".format(
             SUPPORT_OCR_MODEL_VERSION, params.ocr_version)
         params.use_gpu = check_gpu(params.use_gpu)
+        if params.use_gpu:
+            params.use_tensorrt = True
 
         if not params.show_log:
             logger.setLevel(logging.INFO)
